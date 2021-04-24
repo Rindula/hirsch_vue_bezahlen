@@ -1,0 +1,26 @@
+name: auto-merge
+
+on:
+  schedule:
+    - cron: 20 * * * *
+
+  pull_request_target:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - edited
+      - labeled
+      - unlabeled
+      - ready_for_review
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: reitermarkus/automerge@v1.5.2
+        with:
+          token: "${{ secrets.mytoken }}"
+          pull-request: ${{ github.event.number }}
+          squash-title: true
+          dry-run: false
