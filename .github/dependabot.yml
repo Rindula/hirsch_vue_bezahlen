@@ -1,7 +1,7 @@
 version: 2
 updates:
   - package-ecosystem: "npm" # See documentation for possible values
-    directory: "/webroot/vue-apps/bezahlen" # Location of package manifests
+    directory: "/" # Location of package manifests
     commit-message:
       prefix: "build"
       include: "scope"
