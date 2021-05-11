@@ -14,7 +14,7 @@
             :class="'paypalmeslistitem' + ((typeof activeId === 'number' && activeId === paypalme.id) ? ' active' : '')"
             v-bind:key="paypalme.id"
             v-for="paypalme in paypalmes">
-            <button :value="paypalme.id" name="id" type="submit">{{paypalme.name}}</button>
+            <button :value="paypalme.id" name="id" type="submit" formtarget="_blank">{{paypalme.name}}</button>
         </div>
     </div>
 </template>
