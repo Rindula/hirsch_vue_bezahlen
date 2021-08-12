@@ -2,7 +2,7 @@
 
 ## Project setup
 ```
-npm install
+npm ci
 ```
 
 ### Compiles and minifies for production
