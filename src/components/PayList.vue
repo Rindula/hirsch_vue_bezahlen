@@ -8,7 +8,7 @@
         </div>
         <hr>
         <div v-if="activeId == null" class="paypalmeslistitem self">
-            <button value="self" name="id" type="submit">Selber zahlen</button>
+            <button value="self" name="id" type="submit">Zahlen übernehmen</button>
         </div>
         <div
             :class="'paypalmeslistitem' + ((typeof activeId === 'number' && activeId === paypalme.id) ? ' active' : '')"
