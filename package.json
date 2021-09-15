@@ -9,7 +9,7 @@
     },
     "dependencies": {
         "core-js": "^3.17.3",
-        "sass": "^1.40.0",
+        "sass": "^1.41.0",
         "vue": "^2.6.14"
     },
     "devDependencies": {
