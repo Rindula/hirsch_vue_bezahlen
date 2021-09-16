@@ -67,7 +67,7 @@ jobs:
       with:
         node-version: '15'
 
-    - name: Vue - Abhängigkeiten installieren
+    - name: Install dependencies
       uses: nick-invision/retry@v2.4.1
       with:
         timeout_minutes: 10
@@ -75,13 +75,8 @@ jobs:
         warning_on_retry: false
         command: npm ci
     - working-directory: webroot/vue-apps/bezahlen
-      name: Vue - Bauen
-      run: |
-        npx browserslist@latest --update-db
-        npm run build
-
-    - run: |
-        npm run build
+      name: Build
+      run: npm run build
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
