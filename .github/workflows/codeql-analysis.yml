@@ -53,8 +53,8 @@ jobs:
 
     # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
     # If this step fails, then you should remove it and run the build manually (see below)
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v1
+    # - name: Autobuild
+    #   uses: github/codeql-action/autobuild@v1
 
     # ℹ️ Command-line programs to run using the OS shell.
     # 📚 https://git.io/JvXDl
@@ -63,9 +63,25 @@ jobs:
     #    and modify them (or add more) to build your code if your project
     #    uses a compiled language
 
-    #- run: |
-    #   make bootstrap
-    #   make release
+    - uses: actions/setup-node@v2.4.0
+        with:
+          node-version: '15'
+
+    - name: Vue - Abhängigkeiten installieren
+        uses: nick-invision/retry@v2.4.1
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          warning_on_retry: false
+          command: cd $GITHUB_WORKSPACE/webroot/vue-apps/bezahlen && npm ci
+      - working-directory: webroot/vue-apps/bezahlen
+        name: Vue - Bauen
+        run: |
+          npx browserslist@latest --update-db
+          npm run build
+
+    - run: |
+        npm run build
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
