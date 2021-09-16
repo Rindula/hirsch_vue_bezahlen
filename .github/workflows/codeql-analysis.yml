@@ -64,21 +64,21 @@ jobs:
     #    uses a compiled language
 
     - uses: actions/setup-node@v2.4.0
-        with:
-          node-version: '15'
+      with:
+        node-version: '15'
 
     - name: Vue - Abhängigkeiten installieren
-        uses: nick-invision/retry@v2.4.1
-        with:
-          timeout_minutes: 10
-          max_attempts: 3
-          warning_on_retry: false
-          command: cd $GITHUB_WORKSPACE/webroot/vue-apps/bezahlen && npm ci
-      - working-directory: webroot/vue-apps/bezahlen
-        name: Vue - Bauen
-        run: |
-          npx browserslist@latest --update-db
-          npm run build
+      uses: nick-invision/retry@v2.4.1
+      with:
+        timeout_minutes: 10
+        max_attempts: 3
+        warning_on_retry: false
+        command: cd $GITHUB_WORKSPACE/webroot/vue-apps/bezahlen && npm ci
+    - working-directory: webroot/vue-apps/bezahlen
+      name: Vue - Bauen
+      run: |
+        npx browserslist@latest --update-db
+        npm run build
 
     - run: |
         npm run build
