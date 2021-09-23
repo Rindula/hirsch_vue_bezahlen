@@ -15,6 +15,7 @@
             v-bind:key="paypalme.id"
             v-for="paypalme in paypalmes">
             <button :value="paypalme.id" name="id" type="submit" formtarget="_blank">{{paypalme.name}}</button>
+            <button v-if="typeof activeId === 'number' && activeId === paypalme.id" :value="paypalme.id" name="reset" type="submit" :onclick="'return confirm(\'Möchtest du '+paypalme.name+' als aktiven Zahler entfernen?\')'"><i class="material-icons">delete</i></button>
         </div>
     </div>
 </template>
