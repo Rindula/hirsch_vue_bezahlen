@@ -7,15 +7,19 @@
             <span class="range-slider__value">{{tipValueFixed}}€</span>
         </div>
         <hr>
-        <div v-if="activeId == null" class="paypalmeslistitem self">
-            <button value="self" name="id" type="submit">Zahlen übernehmen</button>
+        <div class="paypalmeslistitemcontainer">
+            <div v-if="activeId == null" class="paypalmeslistitem self">
+                <button value="self" name="id" type="submit">Zahlen übernehmen</button>
+            </div>
         </div>
-        <div
-            :class="'paypalmeslistitem' + ((typeof activeId === 'number' && activeId === paypalme.id) ? ' active' : '')"
+        <div class="paypalmeslistitemcontainer"
             v-bind:key="paypalme.id"
             v-for="paypalme in paypalmes">
+            <div :class="'paypalmeslistitem' + ((typeof activeId === 'number' && activeId === paypalme.id) ? ' active' : '')">
             <button :value="paypalme.id" name="id" type="submit" formtarget="_blank">{{paypalme.name}}</button>
             <button v-if="typeof activeId === 'number' && activeId === paypalme.id" :value="paypalme.id" name="reset" type="submit" :onclick="'return confirm(\'Möchtest du '+paypalme.name+' als aktiven Zahler entfernen?\')'"><i class="material-icons">delete</i></button>
+            </div>
+            <span class="label" v-if="new Date(paypalme.bar) >= new Date()">Nur Bar</span>
         </div>
     </div>
 </template>
