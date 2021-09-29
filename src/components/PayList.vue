@@ -19,7 +19,7 @@
             <button :value="paypalme.id" name="id" type="submit" formtarget="_blank">{{paypalme.name}}</button>
             <button v-if="typeof activeId === 'number' && activeId === paypalme.id" :value="paypalme.id" name="reset" type="submit" :onclick="'return confirm(\'Möchtest du '+paypalme.name+' als aktiven Zahler entfernen?\')'"><i class="material-icons">delete</i></button>
             </div>
-            <span class="label" v-if="new Date(paypalme.bar) >= new Date()">Nur Barzahlung</span>
+            <span class="label" v-if="paypalme.onlybar">Nur Barzahlung</span>
         </div>
     </div>
 </template>
